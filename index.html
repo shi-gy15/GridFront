@@ -3,74 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <title>Grid</title>
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> -->
-    <!-- <script src="//unpkg.com/vue/dist/vue.js"></script>
-    <script src="//unpkg.com/element-ui@2.4.0/lib/index.js"></script> -->
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" type="text/css" href="stylesheet/base.css">
 </head>
 
 <body>
     <div id="app">
-        <el-menu
-            :default-active="activeIndex"
-            class="el-menu-demo"
-            mode="horizontal"
-            @select="handleSelect"
-            background-color="#545c64"
-            text-color="#fff"
-            active-text-color="#ffd04b">
-            <el-menu-item index="1">处理中心</el-menu-item>
-            <el-submenu index="2">
-                <template slot="title">我的工作台</template>
-                <el-menu-item index="2-1">选项1</el-menu-item>
-                <el-menu-item index="2-2">选项2</el-menu-item>
-                <el-menu-item index="2-3">选项3</el-menu-item>
-                <el-submenu index="2-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="2-4-1">选项1</el-menu-item>
-                <el-menu-item index="2-4-2">选项2</el-menu-item>
-                <el-menu-item index="2-4-3">选项3</el-menu-item>
-                </el-submenu>
-            </el-submenu>
-            <el-menu-item index="3" disabled>消息中心</el-menu-item>
-            <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
-        </el-menu>
+        <el-row class="side-row">
+            <el-col :span="6">
+                <el-aside width="100%" class="side">
+                    <img :src="logo" class="image">
+                    <el-menu 
+                        :default-active="activeIndex"
+                        class="el-menu-vertical-demo, side-menu"
+                        @select="handleSelect"
+                        background-color="#545c64"
+                        text-color="#fff"
+                        active-text-color="#ffd04b">
+                        <el-menu-item v-for="(item, key) in menus" :index="item.index" :key="key">
+                            <i :class="item.icon"></i>
+                            <span slot="title"> {{ item.title }} </span>
+                        </el-menu-item>
+                    </el-menu>
+                </el-aside>
+            </el-col>
+        </el-row>
+        <el-row>
+            
+            <el-col :span="18" :offset="6">
+                <el-carousel trigger="click">
+                    <el-carousel-item v-for='(item, key) in carouselImgs' :index="item.index" :key="key">
+                        <img :src="item.src" class="c-image">
+                    </el-carousel-item>
+                </el-carousel>
+                <div id="after-img">
+                    <h4 class="widget-title">Education and Employment</h4>
+                    <ul>
+                        <li>Since Dec 2012, Professor, Tsinghua University </li>
+                    </ul>
+                    <hr>
+                    <h4 class="widget-title">Teaching</h4>
+                    <ul>
+                        <li>Spring 2018, (graduate)</li>
+                    </ul>
+                    <hr>
+                </div>
+            </el-col>
+        </el-row>
     </div>
     
 </body>
 
-<!-- import Vue before Element -->
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
 <script>
-    
-    // new Vue({
-    //     el: '#editor',
-    //     data: {
-    //         input: '# hello',
-    //         activeIndex: '1',
-    //     },
-    //     methods: {
-    //         handleSelect(key, keyPath) {
-    //             console.log(key, keyPath);
-    //         }
-    //     }
-    // })
     new Vue({
         el: '#app',
         data: function() {
             return { 
                 visible: false,
                 input: 'hello',
-                activeIndex: '1'
+                activeIndex: '1',
+                logo: 'https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&'
+                    + 'sec=1528207045&di=433effccaf7eed0e583ffe053d6565ce&'
+                    + 'src=http://img.xiami.net/images/album/img33/16433/1454761380188576.jpg',
+                menus: [{
+                        index: '1',
+                        icon: 'el-icon-picture',
+                        title: 'Homepage'
+                    }, {
+                        index: '2',
+                        icon: 'el-icon-info',
+                        title: 'About Grid'
+                    }, {
+                        index: '3',
+                        icon: 'el-icon-view',
+                        title: 'Team Members'
+                    }, {
+                        index: '4',
+                        icon: 'el-icon-message',
+                        title: 'Contact Us'
+                    }],
+                carouselImgs: [{
+                    index: '1',
+                    src: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&'
+                    + 'sec=1528217798995&di=ebaa464e73dc1b7a8e5abae03d8a0a1b&imgtype=0&'
+                    + 'src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F9dc3cf581f97adec800a18b3.jpg'
+                }, {
+                    index: '2',
+                    src: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&'
+                    + 'sec=1528217798995&di=ebaa464e73dc1b7a8e5abae03d8a0a1b&imgtype=0&'
+                    + 'src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F9dc3cf581f97adec800a18b3.jpg'
+                }, {
+                    index: '3',
+                    src: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&'
+                    + 'sec=1528217798995&di=ebaa464e73dc1b7a8e5abae03d8a0a1b&imgtype=0&'
+                    + 'src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F9dc3cf581f97adec800a18b3.jpg'
+                }, {
+                    index: '4',
+                    src: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&'
+                    + 'sec=1528217798995&di=ebaa464e73dc1b7a8e5abae03d8a0a1b&imgtype=0&'
+                    + 'src=http%3A%2F%2Fimgsrc.baidu.com%2Fbaike%2Fpic%2Fitem%2F9dc3cf581f97adec800a18b3.jpg'
+                }]
             };
         },
         methods: {
-            handleSelect(key, keyPath) {
-                console.log(key, keyPath);
+            handleSelect(index, indexPath) {
+                console.log(index);
+                console.log(indexPath);
             }
         }
     });
