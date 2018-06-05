@@ -1,6 +1,18 @@
 
 /* @import url("//unpkg.com/element-ui@2.4.0/lib/theme-chalk/index.css"); */
 
+@font-face
+{
+    font-family: mff;
+    src: url('../src/Roboto-Regular.ttf');
+}
+
+@font-face
+{
+    font-family: mffb;
+    src: url('../src/Roboto-Bold.ttf');
+}
+
 .side {
     height: 100%;
     /* background-color: #545c64; */
@@ -9,7 +21,11 @@
 .side-row {
     height: 100vh;
     position: fixed;
-    z-index: 10;
+    /* z-index: 10; */
+}
+
+.main-row {
+    margin-left: 25%;
 }
 
 .side-row .el-col {
@@ -46,4 +62,14 @@ body {
 
 .c-image {
     width: 100%;
+}
+
+.content {
+    color: #606266;
+    font-family: mff;
+}
+
+.content h4 {
+    font-family: mffb;
+    font-weight: normal;
 }
