@@ -13,33 +13,44 @@
 
 <body>
     <div id="app">
-
-        <el-row class="side-row">
-            <el-col :span="6">
-                <el-aside width="100%" class="side">
-                    <img :src="logo" class="image">
-                    <el-menu 
-                        :default-active="activeIndex"
-                        class="el-menu-vertical-demo, side-menu"
-                        @select="handleSelect"
-                        background-color="#545c64"
-                        text-color="#fff"
-                        active-text-color="#ffd04b">
-                        <el-menu-item v-for="(item, key) in menus" :index="item.index" :key="key">
-                            <i :class="item.icon"></i>
-                            <span slot="title"> {{ item.title }} </span>
-                        </el-menu-item>
-                    </el-menu>
-                </el-aside>
+        <el-row class="top-row">
+        <!-- <el-col :span="6"> -->
+            <!-- <el-aside width="100%" class="side"> -->
+            <el-col :span="2">
+                <img :src="logo" class="image">
             </el-col>
+            <el-col :span="12" class="top-menu-col">
+                <el-menu 
+                    :default-active="activeIndex"
+                    class="el-menu-vertical-demo, top-menu"
+                    mode="horizontal"
+                    @select="handleSelect"
+                    background-color="#545c64"
+                    text-color="#fff"
+                    active-text-color="#ffd04b">
+                    <el-menu-item v-for="(item, key) in menus" :index="item.index" :key="key">
+                        <i :class="item.icon"></i>
+                        <span slot="title"> {{ item.title }} </span>
+                    </el-menu-item>
+                </el-menu>
+            </el-col>
+            <el-col :span="10" class="top-search-col">
+                <el-input placeholder="搜索内容" v-model="searchStr" class="search">
+                    <el-button slot="append" icon="el-icon-search"></el-button>
+                </el-input>
+            </el-col>
+            <!-- </el-aside> -->
+        <!-- </el-col> -->
         </el-row>
-        <div class="main-row">
-            <!-- <el-col :span="18"> -->
-                <el-carousel trigger="click">
+        <div class="main-container">
+            
+            <div class="main-row">
+                <el-carousel trigger="click" type="card">
                     <el-carousel-item v-for='(item, key) in carouselImgs' :index="item.index" :key="key">
                         <img :src="item.src" class="c-image">
                     </el-carousel-item>
                 </el-carousel>
+
                 <div class="content">
                     <h4 class="widget-title">Education and Employment</h4>
                     <ul>
@@ -51,9 +62,42 @@
                         <li>Spring 2018, (graduate)</li>
                     </ul>
                     <hr>
+                    <h4 class="widget-title">Education and Employment</h4>
+                    <ul>
+                        <li>Since Dec 2012, Professor, Tsinghua University </li>
+                    </ul>
+                    <hr>
+                    <h4 class="widget-title">Teaching</h4>
+                    <ul>
+                        <li>Spring 2018, (graduate)</li>
+                    </ul>
+                    <hr>
+                    <h4 class="widget-title">Education and Employment</h4>
+                    <ul>
+                        <li>Since Dec 2012, Professor, Tsinghua University </li>
+                    </ul>
+                    <hr>
+                    <h4 class="widget-title">Teaching</h4>
+                    <ul>
+                        <li>Spring 2018, (graduate)</li>
+                    </ul>
+                    <hr>
+                    <h4 class="widget-title">Education and Employment</h4>
+                    <ul>
+                        <li>Since Dec 2012, Professor, Tsinghua University </li>
+                    </ul>
+                    <hr>
+                    <h4 class="widget-title">Teaching</h4>
+                    <ul>
+                        <li>Spring 2018, (graduate)</li>
+                    </ul>
+                    <hr>
                 </div>
-            <!-- </el-col> -->
+            </div>
         </div>
+                
+        
+        
     </div>
     
 </body>
@@ -66,6 +110,7 @@
                 visible: false,
                 input: 'hello',
                 activeIndex: '1',
+                searchStr: '',
                 logo: 'https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&'
                     + 'sec=1528207045&di=433effccaf7eed0e583ffe053d6565ce&'
                     + 'src=http://img.xiami.net/images/album/img33/16433/1454761380188576.jpg',
